@@ -12,4 +12,10 @@ class SongCategory extends Model
     protected $fillable = [
     	'title','slug','short_title','keypoints','description'
     ];
+
+
+    public function subcategory()
+    {
+    	return $this->hasMany(SongSubcategory::class,'category_id');
+    }
 }

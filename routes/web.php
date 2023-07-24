@@ -4,9 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AggregatorController;
-use App\Http\Livewire\Admin\AdminDashboard;
-use App\Http\Livewire\Admin\SongCategory;
-use App\Http\Livewire\Admin\SongSubcategory;
+use App\Http\Livewire\Admin\{AdminDashboard, SongCategory, SongSubcategory, Genre};
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +32,10 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->group(function() {
 
-		Route::get('dashboard',  AdminDashboard::class)->name('admin-dashboard');
-		Route::get('song-categories',  SongCategory::class)->name('song-category');
-		// Route::post('song-categories',  SongCategory::class)->name('addCategory');
-		Route::get('song-subcategories',  SongSubcategory::class)->name('song-subcategory');
+  		Route::get('dashboard',  AdminDashboard::class)->name('admin-dashboard');
+  		Route::get('song-categories',  SongCategory::class)->name('song-category');
+  		Route::get('song-subcategories',  SongSubcategory::class)->name('song-subcategory');
+      Route::get('genres',  Genre::class)->name('genres');
 
     });
 

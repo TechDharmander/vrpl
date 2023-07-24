@@ -18,6 +18,9 @@
             <a href="{{ route('admin.song-subcategory') }}" class="nav-sub-link">All Song Sub-Categories</a>
           </nav>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.genres') }}" class="nav-link"><i class="ri-calendar-todo-line"></i> <span>Genres</span></a>
+        </li>
       </ul>
     </div><!-- nav-group -->
 

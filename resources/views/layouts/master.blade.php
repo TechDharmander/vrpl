@@ -11,13 +11,28 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        @livewireStyles
         <!-- Scripts -->
         <link rel="stylesheet" href="../backend/lib/remixicon/fonts/remixicon.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
         <!-- Template CSS -->
         <link rel="stylesheet" href="../backend/assets/css/style.min.css">
-
-        @livewireStyles
+        <style>
+          /*Primary (#3B71CA) Secondary (#9FA6B2) Success (#14A44D) Danger (#DC4C64) Warning (#E4A11B) Info (#54B4D3) Light (#FBFBFB)  Dark (#332D2D)*/
+          .toast-success {
+              background-color: #14A44D !important;
+          }
+          .toast-error {
+              background-color: #DC4C64 !important;
+          }
+          .toast-info {
+              background-color: #54B4D3 !important;
+          }
+          .toast-warning {
+              background-color: #E4A11B !important;
+          }
+        </style>
     </head>
     <body>
 
@@ -51,12 +66,36 @@
         </div><!-- main -->
 
 
+        @livewireScripts
         <script src="../backend/lib/jquery/jquery.min.js"></script>
         <script src="../backend/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="../backend/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script src="../backend/assets/js/script.js"></script>
+        <script>
+          window.addEventListener('showToastr', function(event){
+            toastr.remove();
+            if(event.detail.type == 'info') {
+              toastr.info(event.detail.message);
+            }else if(event.detail.type == 'warning') {
+              toastr.warning(event.detail.message);
+            }else if(event.detail.type == 'error') {
+              toastr.error(event.detail.message);
+            }else if(event.detail.type == 'success') {
+              toastr.success(event.detail.message);
+            }else {
+              return false;
+            }
+          });
 
-        @livewireScripts
+          window.addEventListener('showModel', function(e){
+            $('#addModal').modal('show');
+          });
+
+          window.addEventListener('hideModel', function(e){
+            $('#addModal').modal('hide');
+          });
+        </script>
+
     </body>
 </html>
