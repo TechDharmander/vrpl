@@ -34,10 +34,10 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->group(function() {
 
-		Route::get('dashboard',  AdminDashboard::class)->name('admin-dashboard');
-		Route::get('song-categories',  SongCategory::class)->name('song-category');
-		// Route::post('song-categories',  SongCategory::class)->name('addCategory');
-		Route::get('song-subcategories',  SongSubcategory::class)->name('song-subcategory');
+      Route::get('dashboard',  AdminDashboard::class)->name('admin-dashboard');
+      Route::get('song-categories',  SongCategory::class)->name('song-category');
+      // Route::post('song-categories',  SongCategory::class)->name('addCategory');
+      Route::get('song-subcategories',  SongSubcategory::class)->name('song-subcategory');
 
     });
 
