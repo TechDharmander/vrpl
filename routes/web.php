@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AggregatorController;
 use App\Http\Livewire\Admin\{AdminDashboard, SongCategory, SongSubcategory, Genre, Composer, Producers, Artists, Lyricists, SongReleases,AdminProfile,Allusers,Allstaff};
 use App\Http\Livewire\User\{UserDashboard,SongRelease,AllReleases,SingleSongRelease};
-use App\Http\Livewire\Approval\{ApprovalDashboard,ApprovalController};
+use App\Http\Livewire\Approval\{ApprovalDashboard};
 
 
 Route::get('/', function(){
@@ -27,18 +27,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('approval')->name('approval.')->group(function() {
       Route::get('dashboard',  ApprovalDashboard::class)->name('approval-dashboard');
-      Route::get('panding',  ApprovalController::class)->name('songs-panding');
-      Route::get('approved',  ApprovalController::class)->name('songs-approved');
-      Route::get('onhold',  ApprovalController::class)->name('songs-onhold');
-      Route::get('draft',  ApprovalController::class)->name('songs-draft');
+      Route::get('/releases/{status}', AllReleases::class)->name('releases');
     });
 
-<<<<<<< HEAD
-      Route::get('dashboard',  AdminDashboard::class)->name('admin-dashboard');
-      Route::get('song-categories',  SongCategory::class)->name('song-category');
-      // Route::post('song-categories',  SongCategory::class)->name('addCategory');
-      Route::get('song-subcategories',  SongSubcategory::class)->name('song-subcategory');
-=======
 
     Route::prefix('admin')->name('admin.')->group(function() {
       Route::get('profile', AdminProfile::class)->name('profile.edit');
@@ -54,7 +45,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
       
       Route::get('all-users',  Allusers::class)->name('all-users');
       Route::get('all-staff',  Allstaff::class)->name('all-staff');
->>>>>>> dharmander
 
     });
 
