@@ -33,9 +33,13 @@
                         </button>
                     </x-slot>
 
-                    <x-slot name="content">
+                    <x-slot name="content" class="p-2">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
+                        </x-dropdown-link>
+                        <br />
+                        <x-dropdown-link :href="route('song-release')">
+                            {{ __('Song Release') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

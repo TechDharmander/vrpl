@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // \App\Models\SongSubcategory::factory(100)->create();
+        // \App\Models\Artist::factory(100)->create();
+        // \App\Models\Lyricist::factory(100)->create();
+        // \App\Models\Producer::factory(100)->create();
+        // \App\Models\Composer::factory(100)->create();
     }
 }
