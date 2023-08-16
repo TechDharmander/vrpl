@@ -90,12 +90,28 @@
               <p class="fs-sm text-secondary">{{ Auth::user()->role->value }}</p>
             </div>
           </div>
-
+          @if(Auth::user()->role->value == 'superadmin')
+          <nav class="nav">.ed
+            <x-dropdown-link :href="route('admin.profile.edit')">
+                <i class="ri-profile-line"></i>Edit Profile
+            </x-dropdown-link>
+          </nav>
+          @endif
+          @if(Auth::user()->role->value == 'user')
           <nav class="nav">
             <x-dropdown-link :href="route('profile.edit')">
                 <i class="ri-profile-line"></i> Profile
             </x-dropdown-link>
           </nav>
+          @endif
+          @if(Auth::user()->role->value == 'approval')
+          <nav class="nav">
+            <x-dropdown-link :href="route('profile.edit')">
+                <i class="ri-profile-line"></i> Profile
+            </x-dropdown-link>
+          </nav>
+          @endif
+
           <hr>
           <nav class="nav">
             <a href=""><i class="ri-question-line"></i> Help Center</a>

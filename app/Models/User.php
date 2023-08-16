@@ -47,5 +47,17 @@ class User extends Authenticatable
         'password' => 'hashed',
         'role' => UserRoleEnum::class,
     ];
+    public function country()
+    {
+        return $this->hasMany(Country::class,'id','country');
+    }
+    public function state()
+    {
+        return $this->hasMany(State::class,'id','state');
+    }
+    public function city()
+    {
+        return $this->hasMany(City::class,'id','city');
+    }
 
 }

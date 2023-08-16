@@ -35,6 +35,8 @@ class AuthenticatedSessionController extends Controller
             $url = 'admin/dashboard';
         }else if($request->user()->role->value === 'aggregator'){
             $url = 'aggregator/dashboard';
+        }else if($request->user()->role->value === 'approval'){
+            $url = 'approval/approval-dashboard';
         }else if($request->user()->role->value === 'user'){
             $url = '/dashboard';
         }
