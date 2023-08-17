@@ -3,9 +3,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AggregatorController;
+use App\Http\Livewire\Aggregator\{AggregatorDashboard,AggregatorProfile};
 use App\Http\Livewire\Admin\{AdminDashboard, SongCategory, SongSubcategory, Genre, Composer, Producers, Artists, Lyricists, SongReleases,AdminProfile,Allusers,Allstaff};
-use App\Http\Livewire\User\{UserDashboard,SongRelease,AllReleases,SingleSongRelease};
-use App\Http\Livewire\Approval\{ApprovalDashboard};
+use App\Http\Livewire\User\{UserDashboard,SongRelease,AllReleases,SingleSongRelease,UserProfile};
+use App\Http\Livewire\Approval\{ApprovalDashboard,ApprovalController,ApprovalProfile};
+use App\Http\Livewire\Finance\{FinanceDashboard,FinanceProfile};
+use App\Http\Livewire\Promotion\{PromotionDashboard,PromotionProfile};
+use App\Http\Livewire\Planner\{PlannerDashboard,PlannerProfile};
 
 
 Route::get('/', function(){
@@ -16,7 +20,7 @@ Route::get('/', function(){
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', UserDashboard::class)->name('user-dashboard');  
     Route::get('/song-release', SongRelease::class)->name('song-release'); 
     Route::get('/single-song-release', SingleSongRelease::class)->name('single-song-release');
@@ -24,12 +28,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/send-verification-mail', function(){
+      return view('reverification');
+    })->name('send-verification-mail');
 
+    //////////////////////////////////////End Approval/////////////////////////////////////////////////////////////
     Route::prefix('approval')->name('approval.')->group(function() {
+      Route::get('profile', ApprovalProfile::class)->name('profile.edit');
       Route::get('dashboard',  ApprovalDashboard::class)->name('approval-dashboard');
       Route::get('/releases/{status}', AllReleases::class)->name('releases');
     });
+    //////////////////////////////////////End Approval/////////////////////////////////////////////////////////////
 
+
+    //////////////////////////////////////Admin/////////////////////////////////////////////////////////////
 
     Route::prefix('admin')->name('admin.')->group(function() {
       Route::get('profile', AdminProfile::class)->name('profile.edit');
@@ -47,9 +59,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
       Route::get('all-staff',  Allstaff::class)->name('all-staff');
 
     });
+    //////////////////////////////////////End Admin/////////////////////////////////////////////////////////////
 
+    //////////////////////////////////////Aggregator/////////////////////////////////////////////////////////////
     Route::prefix('aggregator')->name('aggregator.')->group(function() {
-		  Route::get('dashboard',  AggregatorController::class)->name('aggregator-dashboard');
+      Route::get('/profile', AggregatorProfile::class)->name('profile.edit');
+      Route::get('dashboard',  AggregatorDashboard::class)->name('aggregator-dashboard');
+    });
+    //////////////////////////////////////End Aggregator/////////////////////////////////////////////////////////////
+
+    Route::prefix('finance')->name('finance.')->group(function() {
+      Route::get('/profile', FinanceProfile::class)->name('profile.edit');
+      Route::get('dashboard',  FinanceDashboard::class)->name('finance-dashboard');
+    });
+
+
+    Route::prefix('promotion')->name('promotion.')->group(function() {
+      Route::get('/profile', PromotionProfile::class)->name('profile.edit');
+      Route::get('dashboard',  PromotionDashboard::class)->name('promotion-dashboard');
+    });
+
+    Route::prefix('planner')->name('planner.')->group(function() {
+      Route::get('/profile', PlannerProfile::class)->name('profile.edit');
+      Route::get('dashboard',  PlannerDashboard::class)->name('planner-dashboard');
     });
 });
 

@@ -91,7 +91,7 @@
             </div>
           </div>
           @if(Auth::user()->role->value == 'superadmin')
-          <nav class="nav">.ed
+          <nav class="nav">
             <x-dropdown-link :href="route('admin.profile.edit')">
                 <i class="ri-profile-line"></i>Edit Profile
             </x-dropdown-link>
@@ -106,7 +106,39 @@
           @endif
           @if(Auth::user()->role->value == 'approval')
           <nav class="nav">
-            <x-dropdown-link :href="route('profile.edit')">
+            <x-dropdown-link :href="route('approval.profile.edit')">
+                <i class="ri-profile-line"></i> Profile
+            </x-dropdown-link>
+          </nav>
+          @endif
+
+          @if(Auth::user()->role->value == 'aggregator')
+          <nav class="nav">
+            <x-dropdown-link :href="route('aggregator.profile.edit')">
+                <i class="ri-profile-line"></i> Profile
+            </x-dropdown-link>
+          </nav>
+          @endif
+
+          @if(Auth::user()->role->value == 'accountant')
+          <nav class="nav">
+            <x-dropdown-link :href="route('finance.profile.edit')">
+                <i class="ri-profile-line"></i> Profile
+            </x-dropdown-link>
+          </nav>
+          @endif
+
+          @if(Auth::user()->role->value == 'promotion')
+          <nav class="nav">
+            <x-dropdown-link :href="route('promotion.profile.edit')">
+                <i class="ri-profile-line"></i> Profile
+            </x-dropdown-link>
+          </nav>
+          @endif
+
+          @if(Auth::user()->role->value == 'planner')
+          <nav class="nav">
+            <x-dropdown-link :href="route('planner.profile.edit')">
                 <i class="ri-profile-line"></i> Profile
             </x-dropdown-link>
           </nav>

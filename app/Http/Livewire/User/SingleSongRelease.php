@@ -221,8 +221,9 @@ class SingleSongRelease extends Component
 		if(!empty($this->thumbnail)){
 			$extension = $this->thumbnail->getClientOriginalExtension();
 			$name = Str::random(16).'.'.$extension;
-		   	Storage::disk('public')->put($name, $this->thumbnail);
-		   	$image = $this->thumbnail->store('images','public');
+			Storage::disk('public')->put($name, $this->thumbnail);
+			$image = $this->thumbnail->store('images','public');
+			
 		}
 		$aud = '';
 		if(!empty($this->audio)){
