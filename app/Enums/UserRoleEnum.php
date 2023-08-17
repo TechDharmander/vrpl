@@ -9,4 +9,8 @@ enum UserRoleEnum:string{
 	case ACCOUNTANT = 'accountant';
 	case PROMOTION 	= 'promotion';
 	case SUPERADMIN = 'superadmin';
+
+	case PLANNER = 'planner';
+	
+
 }

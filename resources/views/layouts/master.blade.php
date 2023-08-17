@@ -15,9 +15,14 @@
         <!-- Scripts -->
         <link rel="stylesheet" href="../backend/lib/remixicon/fonts/remixicon.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <link rel="stylesheet" href="../backend/lib/prismjs/themes/prism.min.css">
 
+        <!-- Select2  -->
+        <link rel="stylesheet" href="../backend/lib/select2/css/select2.min.css">
+        @stack('styles')
         <!-- Template CSS -->
         <link rel="stylesheet" href="../backend/assets/css/style.min.css">
+
         <style>
           /*Primary (#3B71CA) Secondary (#9FA6B2) Success (#14A44D) Danger (#DC4C64) Warning (#E4A11B) Info (#54B4D3) Light (#FBFBFB)  Dark (#332D2D)*/
           .toast-success {
@@ -48,13 +53,23 @@
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Product Management</li>
               </ol> -->
-              <h4 class="main-title mb-0">Welcome to Dashboard</h4>
+              <!-- <h4 class="main-title mb-0">Welcome to Dashboard</h4> -->
             </div>
 
           </div>
 
           <div class="row g-3">
             <div class="col-xl-12">
+              
+            @php $userchack=appHelper::chackVerification();@endphp
+           
+              @if($userchack=='notverified')
+              <div class="alert alert-solid alert-danger" role="alert">
+                your account is not verified. please check your register mail mailbox and click to verified.
+                <a href='{{route("send-verification-mail")}}' class='btn btn-success'>Re-Send Mail</a>
+              </div>
+              @endif
+
               {{ $slot }}
             </div>
           </div>
@@ -67,10 +82,15 @@
 
 
         @livewireScripts
+
         <script src="../backend/lib/jquery/jquery.min.js"></script>
         <script src="../backend/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="../backend/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="../backend/lib/prismjs/prism.js"></script>
+        <!-- Select2  -->
+        <script src="../backend/lib/select2/js/select2.full.min.js"></script>
+
         <script src="../backend/assets/js/script.js"></script>
         <script>
           window.addEventListener('showToastr', function(event){
@@ -93,9 +113,10 @@
           });
 
           window.addEventListener('hideModel', function(e){
-            $('#addModal').modal('hide');
+            $('#addModal, #addArtist, #addComposer, #addLyricist,#viewgonginfoModal').modal('hide');
           });
         </script>
+        @stack('scripts')
 
     </body>
 </html>
