@@ -60,6 +60,15 @@
 
           <div class="row g-3">
             <div class="col-xl-12">
+              @php $userchack = appHelper::chackVerification();@endphp
+           
+              @if($userchack=='notverified')
+              <div class="alert alert-solid alert-danger" role="alert">
+                your account is not verified. please check your register mail mailbox and click to verified.
+                <a href='{{route("send-verification-mail")}}' class='btn btn-success'>Re-Send Mail</a>
+              </div>
+              @endif
+
               {{ $slot }}
             </div>
           </div>

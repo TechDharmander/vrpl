@@ -36,11 +36,17 @@ class AuthenticatedSessionController extends Controller
         }else if($request->user()->role->value === 'aggregator'){
             $url = 'aggregator/dashboard';
         }else if($request->user()->role->value === 'approval'){
-            $url = 'approval/approval-dashboard';
+            $url = 'approval/dashboard';
+        }else if($request->user()->role->value === 'accountant'){
+            $url = 'finance/dashboard';
+        }else if($request->user()->role->value === 'promotion'){
+            $url = 'promotion/dashboard';
+        }else if($request->user()->role->value === 'planner'){
+            $url = 'planner/dashboard';
         }else if($request->user()->role->value === 'user'){
             $url = '/dashboard';
         }
-
+        
         return redirect()->intended($url);
     }
 
