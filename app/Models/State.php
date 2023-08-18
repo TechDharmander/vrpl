@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Country;
 use App\Models\{City,User};
 
+
 class State extends Model
 {
     use HasFactory;

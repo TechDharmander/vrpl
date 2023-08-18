@@ -60,7 +60,7 @@ class AggregatorProfile extends Component
     public function render()
     { 
         $userinfo = User::find(Auth::id());      
-        return view('livewire.Aggregator.Aggregator-profile', compact('userinfo'))->layout('layouts.master');
+        return view('livewire.aggregator.aggregator-profile', compact('userinfo'))->layout('layouts.master');
     }
 
 

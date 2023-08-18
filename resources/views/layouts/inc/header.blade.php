@@ -107,7 +107,8 @@
             </div>
           </div>
           @if(Auth::user()->role->value == 'superadmin')
-          <nav class="nav">.ed
+
+          <nav class="nav">
             <x-dropdown-link :href="route('admin.profile.edit')">
                 <i class="ri-profile-line"></i>Edit Profile
             </x-dropdown-link>
@@ -159,11 +160,6 @@
             </x-dropdown-link>
           </nav>
           @endif
-
-          
-
-          
-
 
           <hr>
           <nav class="nav">

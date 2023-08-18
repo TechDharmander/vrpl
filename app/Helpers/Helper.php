@@ -6,7 +6,6 @@ use Auth;
 use App\Enums\UserRoleEnum;
 use App\Models\{User, Country, State, City};
 use Illuminate\Support\Facades\Session;
-
 class Helper{
 
    public static function isrcCode(){
@@ -28,7 +27,6 @@ class Helper{
 
    public static function chackVerification(){
 
-
       $user = User::find(Auth::id());
 
       $roll=UserRoleEnum::USER->value;
@@ -43,6 +41,7 @@ class Helper{
          return 'verified';
       }
    }
+
    public static function loginAdmin(){
 
       if(Session::get('superadmin')){

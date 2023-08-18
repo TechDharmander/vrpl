@@ -26,12 +26,15 @@
 						@foreach($allstaff as $use)
 						<tr>
 							<th scope="row">{{ $use->id }}</th>
+
 							<td>{{ $use->name }} ({{$use->username}})</td>
 							<td>{{ $use->email }}</td>
 							<td>{{ $use->role }}</td>
 							<td>{{ $use->phone_number }}</td>
 							<td>{{ $use->Country[0]->name}}, {{ $use->State[0]->name}}, {{ $use->City[0]->name}}</td>
+
 							<td><a href="javascript:void(0)" class="text-info" wire:click="loginStaff({{ $use->id }})"><i class="ri-login-box-fill"></i> Login {{ $use->name }}</a></td>
+
 							<td>
 								<button type='button' class="text-primary border-0" data-bs-toggle='modal'
 									data-bs-target='#addModal' wire:click="editStaff({{ $use->id }})">
@@ -41,7 +44,7 @@
 										class="ri-delete-bin-fill"></i> Delete</a>
 							</td>
 						</tr>
-		
+
 						@endforeach
 					</tbody>
 				</table>
@@ -163,7 +166,9 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
+      
 				<h5 class="modal-title" id='addModallabel'> Update Staff Information</h5>
+
 				<button type="button" class="btn-close" wire:click="resetModalForm" data-bs-dismiss="modal"
 					aria-label="Close"></button>
 			</div>

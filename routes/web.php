@@ -11,22 +11,24 @@ use App\Http\Livewire\Finance\{FinanceDashboard,FinanceProfile};
 use App\Http\Livewire\Promotion\{PromotionDashboard,PromotionProfile};
 use App\Http\Livewire\Planner\{PlannerDashboard,PlannerProfile};
 use App\Helpers\Helper;
+
 Route::get('/', function(){
 	return view('welcome');
 });
 
 
-//Auth::routes(['verify'=>true]);
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', UserDashboard::class)->name('user-dashboard');  
-
     Route::get('/song-release', SongRelease::class)->name('song-release'); 
     Route::get('/single-song-release', SingleSongRelease::class)->name('single-song-release');
-    // Route::get('/all-releases', AllReleases::class)->name('all-releases');
-    Route::get('/profile', UserProfile::class)->name('profile.edit');
-    Route::patch('/profile', [UserProfile::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [UserProfile::class, 'destroy'])->name('profile.destroy');
+    Route::get('/all-releases/{status}', AllReleases::class)->name('all-releases');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/send-verification-mail', function(){
       return view('reverification');
     })->name('send-verification-mail');
@@ -36,14 +38,12 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('approval')->name('approval.')->group(function() {
       Route::get('profile', ApprovalProfile::class)->name('profile.edit');
       Route::get('dashboard',  ApprovalDashboard::class)->name('approval-dashboard');
-      Route::get('panding',  ApprovalController::class)->name('songs-panding');
-      Route::get('approved',  ApprovalController::class)->name('songs-approved');
-      Route::get('onhold',  ApprovalController::class)->name('songs-onhold');
-     
+      Route::get('/releases/{status}', AllReleases::class)->name('releases');
     });
-//////////////////////////////////////End Approval/////////////////////////////////////////////////////////////
+    //////////////////////////////////////End Approval/////////////////////////////////////////////////////////////
 
-//////////////////////////////////////Admin/////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////Admin/////////////////////////////////////////////////////////////
 
     Route::prefix('admin')->name('admin.')->group(function() {
       Route::get('profile', AdminProfile::class)->name('profile.edit');
@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
       Route::get('all-staff',  Allstaff::class)->name('all-staff');
 
     });
+
 //////////////////////////////////////End Admin/////////////////////////////////////////////////////////////
 
 //////////////////////////////////////Aggregator/////////////////////////////////////////////////////////////
@@ -92,6 +93,7 @@ Route::prefix('planner')->name('planner.')->group(function() {
     $res=appHelper::loginAdmin();
     if($res){  return redirect()->intended('admin/dashboard');   }
   })->name('loginadmin');
+
 });
 
 

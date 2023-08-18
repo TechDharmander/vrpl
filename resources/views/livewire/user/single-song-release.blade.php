@@ -163,8 +163,10 @@
 									<option value="Internet Explorer">Internet Explorer</option>
 					            </select>
 				            </div> -->	
+
                         	<div class="form-group mb-3">
-	                        	<label class="mb-1">Singers/Artists name(s) <span class="text-danger">*</span>  <a href="#addArtist" class="badge bg-primary float-end" data-bs-toggle="modal"><i class="ri-menu-add-fill"></i> Add Artist/Featured Artist</a></label>
+                        		<label class="mb-1">Singers/Artists name(s) <span class="text-danger">*</span>  <a href="#addArtist" class="badge bg-primary float-end" data-bs-toggle="modal"><i class="ri-menu-add-fill"></i> Add Artist/Featured Artist</a> </label>
+                        		
 	                        	<select wire:model="artist" class="form-control" id="artist_tags" multiple>
 	                        		<option value="">-- Artist --</option>
 	                        		@php $artistList = DB::table('artists')->orderBy('id','DESC')->get(); @endphp
@@ -178,6 +180,7 @@
 		                            <div class="text-danger">{{ $message }}</div>
 		                        @enderror
 		                    </div>
+                        
                         	<div class="form-group mb-3">
 	                        	<label class="mb-1">Feature Singers/Artists name(s) <span class="text-danger">*</span></label>
 	                        	<select wire:model="featured_artist" class="form-control" id="featured_tags" multiple>
@@ -611,20 +614,25 @@
 	});
 	$(document).ready(function() {
 	    $('#artist_tags').select2({
-		  placeholder: 'Choose one',
+		  placeholder: 'Choose Three Artists',
 		  allowClear: true,
-		  minimumResultsForSearch: 3
+		  minimumResultsForSearch: 3,
+		  minimumResultsForSearch: Infinity
 		});
 	    $('#artist_tags').on('change', function(e){
 	    	let data = $('#artist_tags').select2('val');
-	    	@this.set('artists', data);
+	    	@this.set('artist', data);
 	    });
-	 //    $('#select2F').select2({
-		//   placeholder: 'Choose Three Artist',
-		//   allowClear: true,
-		//   maximumSelectionLength: 3,
-  // 		  minimumResultsForSearch: Infinity
-		// });
+	    $('#feature_artist_tags').select2({
+		  placeholder: 'Choose Three Artists',
+		  allowClear: true,
+		  minimumResultsForSearch: 3,
+		  minimumResultsForSearch: Infinity
+		});
+	    $('#feature_artist_tags').on('change', function(e){
+	    	let data = $('#feature_artist_tags').select2('val');
+	    	@this.set('featured_artist', data);
+	    });
 	});
 </script>
 @endpush

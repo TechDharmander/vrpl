@@ -140,6 +140,7 @@ class Allusers extends Component
  
     $alluser = User::where('role','user')->with(['country','state','city'])->paginate(20);      
     return view('livewire.admin.allusers', compact('alluser'))->layout('layouts.master');
+
   }
 
 }

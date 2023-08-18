@@ -13,6 +13,7 @@
           <a href="{{ route('admin.admin-dashboard') }}" class="nav-link"><i class="ri-calendar-todo-line"></i>
             <span>Home</span></a>
         </li>
+        
         <li class="nav-item"><a href="" class="nav-link"><i class="ri-calendar-todo-line"></i> <span>Home</span></a></li>
         <li class="nav-item"><a href="" class="nav-link"><i class="ri-calendar-todo-line"></i> <span>Verification Dash</span></a></li>
         <li class="nav-item"><a href="" class="nav-link"><i class="ri-calendar-todo-line"></i> <span>Financial Dash</span></a></li>
@@ -43,14 +44,30 @@
               Releases</span></a>
         </li>
         
+
         <li class="nav-item">
-          <a href="" class="nav-link has-sub"><i class="ri-gallery-line"></i> <span>Song Categories</span></a>
+          <a href="" class="nav-link has-sub"><i class="ri-gallery-line"></i> <span>User Profile /Staff Profile</span></a>
           <nav class="nav nav-sub">
-            <a href="{{ route('admin.song-category') }}" class="nav-sub-link">All Song Categories</a>
-            <a href="{{ route('admin.song-subcategory') }}" class="nav-sub-link">All Song Sub-Categories</a>
+            <a href="{{ route('admin.all-users') }}" class="nav-sub-link">All Users</a>
+            <a href="{{ route('admin.all-staff') }}" class="nav-sub-link">All Staff</a>
           </nav>
         </li>
+
+        <li class="nav-item"><a href="" class="nav-link"><i class="ri-calendar-todo-line"></i> <span>Promotions Dash</span></a></li>
         <li class="nav-item">
+          <a href="" class="nav-link has-sub"><i class="ri-gallery-line"></i> <span>Songs uploaded dash</span></a>
+          <nav class="nav nav-sub">
+            <a href="" class="nav-sub-link">Pending Song</a>
+            <a href="" class="nav-sub-link">On Hold Songs</a>
+            <a href="" class="nav-sub-link">Approved Songs</a>
+          </nav>
+        </li>
+        <li class="nav-item"><a href="" class="nav-link"><i class="ri-calendar-todo-line"></i> <span>Support Dash</span></a></li>
+        <li class="nav-item"><a href="" class="nav-link"><i class="ri-calendar-todo-line"></i> <span>Site settings (theme, colour, page modification)</span></a></li>
+        
+        <hr>
+        <li class="nav-item">
+
           <a href="{{ route('admin.genres') }}" class="nav-link"><i class="ri-calendar-todo-line"></i>
             <span>Genres</span></a>
         </li>
@@ -197,12 +214,12 @@
             <span>Help and Support</span></a>
         </li>
 
-
         @endif
 
 
 
         @if(Auth::user()->role->value == 'accountant')
+
         <li class="nav-item">
           <a href="{{ route('finance.finance-dashboard') }}" class="nav-link"><i class="ri-calendar-todo-line"></i>
             <span>Home</span></a>
@@ -251,11 +268,13 @@
             <span>Update offers</span></a>
         </li>
 
+
         @endif
 
 
         
         @if(Auth::user()->role->value == 'planner')
+
         <li class="nav-item"><a href="{{ route('planner.planner-dashboard') }}" class="nav-link"><i class="ri-calendar-todo-line"></i><span>Home</span></a></li>
         <li class="nav-item"><a href="" class="nav-link"><i class="ri-calendar-todo-line"></i><span>Agreement creation wizard</span></a> </li>
         <li class="nav-item"> <a href="" class="nav-link"><i class="ri-calendar-todo-line"></i><span>All Users  </span></a></li>
@@ -266,15 +285,13 @@
         <li class="nav-item"> <a href="" class="nav-link"><i class="ri-calendar-todo-line"></i><span>Plan Assignment</span></a></li>
         @endif
 
-        
-        
-
       </ul>
     </div><!-- nav-group -->
 
   </div>
 
   @if(Auth::user()->role->value == 'user')
+
   <div class="sidebar-footer">
     <div class="sidebar-footer-top">
  
@@ -294,5 +311,6 @@
       </nav>
     </div><!-- sidebar-footer-menu -->
   </div><!-- sidebar-footer -->
+
   @endif
 </div><!-- sidebar -->

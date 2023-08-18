@@ -62,6 +62,7 @@
             <div class="col-xl-12">
               
             @php $userchack=appHelper::chackVerification();@endphp
+
            
               @if($userchack=='notverified')
               <div class="alert alert-solid alert-danger" role="alert">
@@ -113,7 +114,9 @@
           });
 
           window.addEventListener('hideModel', function(e){
+
             $('#addModal, #addArtist, #addComposer, #addLyricist,#viewgonginfoModal').modal('hide');
+
           });
         </script>
         @stack('scripts')

@@ -11,6 +11,7 @@ use App\Enums\UserRoleEnum;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
+
 class Allstaff extends Component
 {
 
@@ -185,6 +186,7 @@ class Allstaff extends Component
     {
 
       $allstaff = User::whereNotIn('role',[UserRoleEnum::USER->value,UserRoleEnum::SUPERADMIN->value])->with(['country','state','city'])->paginate(20);
+
       return view('livewire.admin.allstaff', compact('allstaff'))->layout('layouts.master');
 
     }

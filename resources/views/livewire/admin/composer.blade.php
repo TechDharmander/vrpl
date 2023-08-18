@@ -21,8 +21,10 @@
 	                <th scope="row">{{ $loop->iteration }}</th>
 	                <td>{{ $cat->name }}</td>
 	                <td>
-	                    <!-- <a href="javascript:void(0)" class="text-primary"><i class="ri-edit-2-line"></i> Edit</a>
-	                    <a href="javascript:void(0)" class="text-danger" onclick="confirm('Are you sure you want to remove the user from this group?') || event.stopImmediatePropagation()"><i class="ri-delete-bin-fill"></i> Delete</a> -->
+
+	                    <a href="javascript:void(0)" class="text-primary"><i class="ri-edit-2-line"></i> Edit</a>
+	                    <a href="javascript:void(0)" class="text-danger" onclick="confirm('Are you sure you want to remove the user from this group?') || event.stopImmediatePropagation()"><i class="ri-delete-bin-fill"></i> Delete</a>
+
 	                </td>
 	              </tr>
 	                @endforeach

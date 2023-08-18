@@ -1,5 +1,4 @@
 <div>
-    
 		<div class="card">
 			<div class="card-header bg-dark text-white"><h4 class="m-0">Songs List</h4></div>
 			<div class="card-body">
@@ -27,7 +26,7 @@
 					    </thead>
 					    <tbody>
 					      
-					        <!-- @isset($songsList) -->
+
 				        	@forelse($songsList as $k)
 				        	<tr>
 				        		<td>{{ $loop->iteration }}</td>
@@ -49,7 +48,7 @@
 				        	@empty
 				        		<td colspan="15">No Data Found!!</td>
 				        	@endforelse
-					        <!-- @endisset -->
+
 					      
 					    </tbody>
 					  </table>

@@ -7,8 +7,6 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-// use Owenoj\LaravelGetId3\GetId3;
-// Use wapmorgan\Mp3Info\Mp3Info;
 use App\Models\{Song,SongCategory as Songcategory,SongSubcategory as Songsubcategory,Artist,Composer,Lyricist,Producer,Genre, User, Language};
 
 class SingleSongRelease extends Component
@@ -22,7 +20,8 @@ class SingleSongRelease extends Component
 	public $lang,$artist_name, $spotify, $apple, $genre_name, $composer_name, $producer_name, $lyricist_name;
 	public $plateforms = ['indian_dsps'];
 	public $totalStep = 4;
-	public $currentStep = 2;
+	public $currentStep = 1;
+
 
 	protected $listeners = [
 		'refresh-me' => '$refresh',
@@ -219,13 +218,10 @@ class SingleSongRelease extends Component
 		$user_id = Auth::user()->id;
 		$image = '';
 		if(!empty($this->thumbnail)){
-			$ext = 'webp';
-			$name = Str::random(16).'.'.$ext;
-			$imageConvert = \Image::make($this->thumbnail->getRealPath())->stream($ext, 100);
-			Storage::put('images/'.$name, $imageConvert);
-			// $extension = $this->thumbnail->getClientOriginalExtension();
-		   	// Storage::disk('public')->put($name, $this->thumbnail);
-		   	// $image = $this->thumbnail->store('images','public');
+			$extension = $this->thumbnail->getClientOriginalExtension();
+			$name = Str::random(16).'.'.$extension;
+			Storage::disk('public')->put($name, $this->thumbnail);
+			$image = $this->thumbnail->store('images','public');
 		}
 		$aud = '';
 		if(!empty($this->audio)){
@@ -237,7 +233,10 @@ class SingleSongRelease extends Component
 		}
 		$artistList = implode(',', $this->artist );
 		$featuredList = implode(',', $this->featured_artist );
-		$data = ['song_name'=>$this->song_name,'album_name'=>$this->album_name,'song_duration'=>$this->song_duration,'category'=>$this->category,'subcategory'=>$this->subcategory,'genre'=>$this->genre,'language'=>$this->language,'artist'=>$artistList,'featured_artist'=>$featuredList,'composer'=>$this->composer,'lyricist'=>$this->lyricist,'description'=>$this->description,'caller_tune_name'=>$this->caller_tune_name,'caller_tune_timing'=>$this->caller_tune_timing,'date_for_live'=>$this->date_for_live,'label_id'=>$this->label,'isrc_code'=>$this->isrc_code,'thumbnail'=>$image,'audio'=>$aud,'user_id'=>$user_id,'status'=>'draft','plateforms' => implode(',', $plateforms)];
+		$plateformList = implode(',', $this->plateforms);
+
+		$data = ['song_name'=>$this->song_name,'album_name'=>$this->album_name,'song_duration'=>$this->song_duration,'category'=>$this->category,'subcategory'=>$this->subcategory,'genre'=>$this->genre,'language'=>$this->language,'artist'=>$artistList,'featured_artist'=>$featuredList,'composer'=>$this->composer,'lyricist'=>$this->lyricist,'description'=>$this->description,'caller_tune_name'=>$this->caller_tune_name,'caller_tune_timing'=>$this->caller_tune_timing,'date_for_live'=>$this->date_for_live,'label_id'=>$this->label,'isrc_code'=>$this->isrc_code,'thumbnail'=>$image,'audio'=>$aud,'user_id'=>$user_id,'status'=>'draft','plateforms' => $plateformList];
+
 		$insert = Song::insert($data);
 		if($insert){
 			$this->showToastr('Song upload successfully.','success');

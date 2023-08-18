@@ -41,14 +41,13 @@
 										class="ri-delete-bin-fill"></i> Delete</a>
 							</td>
 						</tr>
-						
-						@endforeach
-						
+						@endforeach	
 					</tbody>
 				</table>
 			</div>
 		
 			{!! $alluser->links('pagination::bootstrap-5') !!}
+      
 		</div>
 	</div>
 
