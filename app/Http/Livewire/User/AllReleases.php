@@ -8,7 +8,7 @@ use App\Models\Song;
 
 class AllReleases extends Component
 {
-    // public $status;
+
     public function render()
     {
         $status = request()->status;

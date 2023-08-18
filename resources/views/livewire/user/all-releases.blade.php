@@ -1,5 +1,4 @@
 <div>
-	
 		<div class="card">
 			<div class="card-header bg-dark text-white"><h4 class="m-0">Songs List</h4></div>
 			<div class="card-body">
@@ -22,10 +21,12 @@
 					       	<th>Tune Name</th>
 					       	<th>Tune Timing</th>
 					       	<th>Live Date</th>
+					       	<th>Status</th>
 					      </tr>
 					    </thead>
 					    <tbody>
 					      
+
 				        	@forelse($songsList as $k)
 				        	<tr>
 				        		<td>{{ $loop->iteration }}</td>
@@ -42,10 +43,12 @@
 						       	<td>{{ $k->caller_tune_name }}</td>
 						       	<td>{{ $k->caller_tune_timing }}</td>
 						       	<td>{{ $k->date_for_live }}</td>
+						       	<td>Under Process</td>
 					       </tr>
 				        	@empty
 				        		<td colspan="15">No Data Found!!</td>
 				        	@endforelse
+
 					      
 					    </tbody>
 					  </table>

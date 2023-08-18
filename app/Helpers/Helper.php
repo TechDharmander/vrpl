@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Enums\UserRoleEnum;
 use App\Models\{User, Country, State, City};
+use Illuminate\Support\Facades\Session;
 class Helper{
 
    public static function isrcCode(){
@@ -40,5 +41,19 @@ class Helper{
          return 'verified';
       }
    }
+
+   public static function loginAdmin(){
+
+      if(Session::get('superadmin')){
+         $user = User::find(Session::get('superadmin'));
+         Auth::login($user);
+         Session::put('superadmin', '');
+         return true;
+      }else{
+         return false;
+      }
+      return false;
+  }
+
 
 }

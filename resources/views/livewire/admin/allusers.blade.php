@@ -20,14 +20,17 @@
 						</tr>
 					</thead>
 					<tbody>
-
+					
 						@foreach($alluser as $use)
+						
 						<tr>
-							<th scope="row">{{ $loop->iteration }}</th>
+							<th scope="row">{{ $use->id }}</th>
 							<td>{{ $use->name }} ({{$use->username}})</td>
 							<td>{{ $use->email }}</td>
 							<td>{{ $use->phone_number }}</td>
+							
 							<td>{{ $use->Country[0]->name}}, {{ $use->State[0]->name}}, {{ $use->City[0]->name}}</td>
+					
 							<td>
 								<button type='button' class="text-primary border-0" data-bs-toggle='modal'
 									data-bs-target='#addModal' wire:click="edit({{ $use->id }})">
@@ -38,11 +41,13 @@
 										class="ri-delete-bin-fill"></i> Delete</a>
 							</td>
 						</tr>
-						@endforeach
+						@endforeach	
 					</tbody>
 				</table>
 			</div>
+		
 			{!! $alluser->links('pagination::bootstrap-5') !!}
+      
 		</div>
 	</div>
 

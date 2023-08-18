@@ -163,7 +163,8 @@
 									<option value="Internet Explorer">Internet Explorer</option>
 					            </select>
 				            </div> -->	
-                        	<div wire:ignore class="form-group mb-3">
+
+                        	<div class="form-group mb-3">
                         		<label class="mb-1">Singers/Artists name(s) <span class="text-danger">*</span>  <a href="#addArtist" class="badge bg-primary float-end" data-bs-toggle="modal"><i class="ri-menu-add-fill"></i> Add Artist/Featured Artist</a> </label>
                         		
 	                        	<select wire:model="artist" class="form-control" id="artist_tags" multiple>
@@ -179,9 +180,10 @@
 		                            <div class="text-danger">{{ $message }}</div>
 		                        @enderror
 		                    </div>
-                        	<div wire:ignore class="form-group mb-3">
+                        
+                        	<div class="form-group mb-3">
 	                        	<label class="mb-1">Feature Singers/Artists name(s) <span class="text-danger">*</span></label>
-	                        	<select wire:model="featured_artist" class="form-control" id="feature_artist_tags" multiple>
+	                        	<select wire:model="featured_artist" class="form-control" id="featured_tags" multiple>
 	                        		<option value="">-- Featured Artist --</option>
 	                        		@if(!empty($artistList))
 	                        			@foreach($artistList as $fart)

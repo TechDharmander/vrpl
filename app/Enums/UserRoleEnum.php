@@ -8,6 +8,6 @@ enum UserRoleEnum:string{
 	case APPROVAL 		= 'approval';
 	case ACCOUNTANT 	= 'accountant';
 	case PROMOTION 	= 'promotion';
-	case SUPERADMIN 	= 'superadmin';
+  case SUPERADMIN 	= 'superadmin';
 	case PLANNER 		= 'planner';
 }

@@ -7,8 +7,6 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-// use Owenoj\LaravelGetId3\GetId3;
-// Use wapmorgan\Mp3Info\Mp3Info;
 use App\Models\{Song,SongCategory as Songcategory,SongSubcategory as Songsubcategory,Artist,Composer,Lyricist,Producer,Genre, User, Language};
 
 class SingleSongRelease extends Component
@@ -23,6 +21,7 @@ class SingleSongRelease extends Component
 	public $plateforms = ['indian_dsps'];
 	public $totalStep = 4;
 	public $currentStep = 1;
+
 
 	protected $listeners = [
 		'refresh-me' => '$refresh',
@@ -223,7 +222,6 @@ class SingleSongRelease extends Component
 			$name = Str::random(16).'.'.$extension;
 			Storage::disk('public')->put($name, $this->thumbnail);
 			$image = $this->thumbnail->store('images','public');
-			
 		}
 		$aud = '';
 		if(!empty($this->audio)){
@@ -238,7 +236,7 @@ class SingleSongRelease extends Component
 		$plateformList = implode(',', $this->plateforms);
 
 		$data = ['song_name'=>$this->song_name,'album_name'=>$this->album_name,'song_duration'=>$this->song_duration,'category'=>$this->category,'subcategory'=>$this->subcategory,'genre'=>$this->genre,'language'=>$this->language,'artist'=>$artistList,'featured_artist'=>$featuredList,'composer'=>$this->composer,'lyricist'=>$this->lyricist,'description'=>$this->description,'caller_tune_name'=>$this->caller_tune_name,'caller_tune_timing'=>$this->caller_tune_timing,'date_for_live'=>$this->date_for_live,'label_id'=>$this->label,'isrc_code'=>$this->isrc_code,'thumbnail'=>$image,'audio'=>$aud,'user_id'=>$user_id,'status'=>'draft','plateforms' => $plateformList];
-		// dd($data);
+
 		$insert = Song::insert($data);
 		if($insert){
 			$this->showToastr('Song upload successfully.','success');

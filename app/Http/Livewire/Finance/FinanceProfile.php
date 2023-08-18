@@ -60,7 +60,7 @@ class FinanceProfile extends Component
     public function render()
     { 
         $userinfo = User::find(Auth::id());      
-        return view('livewire.finanace.finanace-profile', compact('userinfo'))->layout('layouts.master');
+        return view('livewire.finance.finance-profile', compact('userinfo'))->layout('layouts.master');
     }
 
 

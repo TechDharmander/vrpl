@@ -55,8 +55,10 @@
 				<div class="modal-body">
 					<div class='row'>
 						<div class='col-md-5 px-3'>
-							<a href="{{asset('storage/'.$s_thumbnail)}}" target="_blank"><img
-									src="{{asset('storage/'.$s_thumbnail)}}" class='w-100' /></a>
+
+							<a href="{{asset('storage/'.$s_thumbnail)}}" target="_blank">
+								<img src="{{asset('storage/'.$s_thumbnail)}}" class='w-100' /></a>
+
 							<br>
 							<audio id="audio" src="{{asset('storage/'.$s_audio)}}" class='w-100' controls></audio>
 						</div>
@@ -83,7 +85,9 @@
 				</div>
 				<div class="modal-footer">
 					<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-					<button class="btn btn-success me-auto"><i class="ri-check-double-fill"></i> Approved</button>
+
+					<button class="btn btn-success me-auto" wire:click="actionApproved({{$s_id}})" ><i class="ri-check-double-fill"></i> Approved</button>
+
 					<button class="btn btn-danger" id="draft_res" wire:click="showRemark('unapprove')" @if($remart_status == 'unapprove') disabled @endif><i class="ri-delete-bin-2-fill"></i> Unapproved</button>
 					<button class="btn btn-primary" wire:click="showRemark('onhold')" @if($remart_status == 'onhold') disabled @endif><i class="ri-stop-circle-fill"></i> Onhold</button>
 				</div>

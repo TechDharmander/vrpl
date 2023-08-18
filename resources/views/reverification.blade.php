@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -61,17 +62,32 @@
           <div class="row g-3">
             <div class="col-xl-12">
               
-            @php $userchack=appHelper::chackVerification();@endphp
-
-           
-              @if($userchack=='notverified')
-              <div class="alert alert-solid alert-danger" role="alert">
-                your account is not verified. please check your register mail mailbox and click to verified.
-                <a href='{{route("send-verification-mail")}}' class='btn btn-success'>Re-Send Mail</a>
-              </div>
-              @endif
-
-              {{ $slot }}
+           <div class="container">
+    <div class="row">
+        <div class="col-md-5 col-sm-12 mx-auto">
+            <div class="card py-4">
+                <div class="card-body">
+                   
+                  
+                        <div class="alert alert-success text-center">A new email verification link has been emailed to you!</div>
+                  
+                    <div class="text-center mb-5">
+                        
+                        <h3>Verify e-mail address</h3>
+                        <p>You must verify your email address to access this page.</p>
+                    </div>
+                    <form method="POST" action="{{ route('verification.send') }}" class="text-center">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Resend verification email</button>
+                    </form>
+                </div>
+               
+                <p class="mt-3 mb-0 text-center"><small>Issues with the verification process or entered the wrong email?
+                    <br>Please sign up with <a href="/register">another</a> email address.</small></p>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
           </div>
 
@@ -114,9 +130,7 @@
           });
 
           window.addEventListener('hideModel', function(e){
-
             $('#addModal, #addArtist, #addComposer, #addLyricist,#viewgonginfoModal').modal('hide');
-
           });
         </script>
         @stack('scripts')

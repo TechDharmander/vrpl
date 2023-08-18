@@ -77,6 +77,22 @@
     </div>
   </div> -->
 
+
+@if(Session::get('superadmin'))
+
+<form method="POST" action="{{ route('loginadmin') }}">
+                @csrf
+
+                <a class='btn btn-success' onclick="event.preventDefault(); this.closest('form').submit();">
+                <i class="ri-login-box-line"></i> Back To Admin panel
+</a>
+            </form>
+
+
+@endif
+
+
+
   <div class="dropdown dropdown-profile ms-3 ms-xl-4">
       <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside">
         <div class="avatar online"><img src="../backend/assets/img/img1.jpg" alt=""></div>
@@ -91,6 +107,7 @@
             </div>
           </div>
           @if(Auth::user()->role->value == 'superadmin')
+
           <nav class="nav">
             <x-dropdown-link :href="route('admin.profile.edit')">
                 <i class="ri-profile-line"></i>Edit Profile

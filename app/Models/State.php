@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Country;
-use App\Models\City;
+use App\Models\{City,User};
+
 
 class State extends Model
 {
